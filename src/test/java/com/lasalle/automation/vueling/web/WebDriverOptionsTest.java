@@ -1,7 +1,5 @@
 package com.lasalle.automation.vueling.web;
 
-import com.sun.java.swing.plaf.windows.resources.windows;
-import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -39,12 +37,12 @@ public class WebDriverOptionsTest {
 
     private static WebDriver driver;
 
-    @Test
+    //@Test
     public void testWebDrives() throws InterruptedException
     {
         LOGGER.debug("start testWebDrive");
 
-        System.setProperty ("webdriver.chrome.driver","/Users/sacrists/Downloads/chromedriver" );
+        System.setProperty ("webdriver.chrome.driver","/Users/isaac/Desktop/chromedriver" );
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS) ;
         driver.manage().window().maximize() ;
