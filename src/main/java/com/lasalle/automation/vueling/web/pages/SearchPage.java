@@ -24,23 +24,17 @@ public class SearchPage extends PageObject {
     @FindBy(how = How.CSS, using = ".searchbar-container .searchbar-main .searchbar-main_tab-content .searchbar-main_tab-content_pane .form-group>.form-input.destination .input-group input")
     private WebElementFacade destination;
 
-    @FindBy(how = How.ID, using = "inputGoing")
-    private WebElementFacade outboundFly;
-
-    @FindBy(how = How.ID, using = "inputComeBack")
-    private WebElementFacade returnFly;
-
-    @FindBy(how = How.ID, using = "passengers-input")
-    private WebElementFacade passengers;
-
     @FindBy(how = How.ID, using = "btnSubmitHomeSearcher")
     private WebElementFacade btnSearch;
 
-    @FindBy(how = How.CSS, using = "td:not(.ui-state-disabled) a.ui-state-default")
+    @FindBy(how = How.CSS, using = "td:not(.ui-state-disabled)")
     private List<WebElementFacade> listOfAvailableDays;
 
     @FindBy(how = How.CLASS_NAME, using = "addReturnFlight")
     private WebElementFacade addReturnLink;
+
+    @FindBy(how = How.CSS, using = "#passengers-popup > ul:nth-child(2) > li:nth-child(1) > div.passengers-popup_main_counter > span.icon.vy-icon-rounded-more")
+    private WebElementFacade addPassengerButton;
 
 
     public void searchFlight(SearchDto search) {
@@ -51,9 +45,7 @@ public class SearchPage extends PageObject {
 
         setDate(search.getOutboundFly());
 
-        //start add passengers...
-
-        //end add passengers
+        setPassengers(Integer.parseInt(search.getPassengers()));
 
         addReturnLink.click();
         setDate(search.getReturnFly());
@@ -88,6 +80,13 @@ public class SearchPage extends PageObject {
             lastDayElementChecked = dayNumber;
         }
 
+    }
+
+    public void setPassengers(int numberOfPassengers) {
+
+        for (int i = 2; i <= numberOfPassengers; i++) {
+            addPassengerButton.click();
+        }
     }
 
 }
