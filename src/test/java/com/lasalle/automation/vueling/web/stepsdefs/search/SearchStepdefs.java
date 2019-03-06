@@ -1,5 +1,7 @@
 package com.lasalle.automation.vueling.web.stepsdefs.search;
 
+import com.lasalle.automation.vueling.web.domain.SearchDto;
+import com.lasalle.automation.vueling.web.pages.SearchPage;
 import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -15,6 +17,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.lang.invoke.MethodHandles;
+import java.net.URL;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class SearchStepdefs {
@@ -22,13 +26,16 @@ public class SearchStepdefs {
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
     private static WebDriver driver;
 
+    private SearchPage searchPage;
+
+    private List<SearchDto> searches;
+
     @Before
     public static void beforeClass() {
         System.setProperty("webdriver.chrome.driver", "/Users/isaac/Desktop/chromedriver");
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.manage().window().maximize();
-        driver.get("https://www.vueling.com/es");
         LOGGER.debug("driver started");
     }
 
@@ -41,18 +48,26 @@ public class SearchStepdefs {
     @Given("^I'm main page$")
     public void iMMainPage() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+        LOGGER.debug("I'm main page started");
+        driver.get("https://www.vueling.com/es");
+
+
     }
 
     @When("^I try to find a fly$")
-    public void iTryToFindAFly() throws Throwable {
+    public void iTryToFindAFly(List<SearchDto> searchDtoList) throws Throwable {
         // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+        LOGGER.debug("Destination: [{}]", searchDtoList.get(0).getDestination());
+
+        searches = searchDtoList;
+        searchPage.setDriver(driver);
+        searchPage.searchFlight(searches.get(0));
+
     }
 
     @Then("^I get available flight$")
     public void iGetAvailableFlight() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+
     }
 }

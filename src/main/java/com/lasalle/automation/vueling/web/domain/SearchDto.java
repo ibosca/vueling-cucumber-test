@@ -51,4 +51,15 @@ public class SearchDto {
     public void setPassengers(String passengers) {
         this.passengers = passengers;
     }
+
+    @Override
+    public String toString() {
+        return "SearchDto{" +
+                "origin='" + origin + '\'' +
+                ", destination='" + destination + '\'' +
+                ", outboundFly='" + outboundFly + '\'' +
+                ", returnFly='" + returnFly + '\'' +
+                ", passengers='" + passengers + '\'' +
+                '}';
+    }
 }
