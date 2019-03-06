@@ -8,7 +8,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.lang.invoke.MethodHandles;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -35,7 +34,6 @@ public class SearchPage extends PageObject {
 
     @FindBy(how = How.CSS, using = "#passengers-popup > ul:nth-child(2) > li:nth-child(1) > div.passengers-popup_main_counter > span.icon.vy-icon-rounded-more")
     private WebElementFacade addPassengerButton;
-
 
     public void searchFlight(SearchDto search) {
         LOGGER.debug("searchFlight starts, reservation: [{}]", search);
