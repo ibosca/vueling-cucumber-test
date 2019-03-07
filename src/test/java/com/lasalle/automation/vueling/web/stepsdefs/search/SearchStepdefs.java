@@ -1,6 +1,7 @@
 package com.lasalle.automation.vueling.web.stepsdefs.search;
 
 import com.lasalle.automation.vueling.web.domain.SearchDto;
+import com.lasalle.automation.vueling.web.pages.ResultPage;
 import com.lasalle.automation.vueling.web.pages.SearchPage;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -15,12 +16,15 @@ import java.lang.invoke.MethodHandles;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class SearchStepdefs {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
     private static WebDriver driver;
 
     private SearchPage searchPage;
+    private ResultPage resultPage;
 
     private List<SearchDto> searches;
 
@@ -61,6 +65,8 @@ public class SearchStepdefs {
 
     @Then("^I get available flight$")
     public void iGetAvailableFlight() {
-
+        resultPage.setDriver(driver);
+        String actualDestination = resultPage.getDestination();
+        assertThat(actualDestination).isEqualTo(searches.get(0).getDestination());
     }
 }
