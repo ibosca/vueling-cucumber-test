@@ -66,7 +66,11 @@ public class SearchStepdefs {
     @Then("^I get available flight$")
     public void iGetAvailableFlight() {
         resultPage.setDriver(driver);
+
         String actualDestination = resultPage.getDestination();
         assertThat(actualDestination).isEqualTo(searches.get(0).getDestination());
+
+        Boolean isThereAvailabilityTable = resultPage.isThereAvailabilityTable();
+        assertThat(isThereAvailabilityTable).isEqualTo(true);
     }
 }

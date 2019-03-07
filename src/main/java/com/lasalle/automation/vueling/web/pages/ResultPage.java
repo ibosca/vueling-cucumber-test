@@ -12,22 +12,17 @@ public class ResultPage extends PageObject {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-    @FindBy(how = How.CSS, using = "#outboundFlight > div.availabilitySection__title.inlineElements.clearBoth > h2")
-    private WebElementFacade flyInfo;
-
     @FindBy(how = How.CLASS_NAME, using = "travelInfo_headerTitle")
     private WebElementFacade destination;
 
-    public boolean atResultPage() {
-
-        System.out.println("TITLE: "+this.getTitle());
-
-        System.out.println(flyInfo.getText());
-
-        return false;
-    }
+    @FindBy(how = How.ID, using = "availabilityTable0")
+    private WebElementFacade availabilityTable;
 
     public String getDestination() {
         return destination.getText();
+    }
+
+    public boolean isThereAvailabilityTable() {
+        return availabilityTable.isPresent();
     }
 }
