@@ -39,14 +39,14 @@ public class SearchPage extends PageObject {
         LOGGER.debug("searchFlight starts, reservation: [{}]", search);
 
         setOrigin(search.getOrigin());
+
         setDestination(search.getDestination());
 
         setDate(search.getOutboundFly());
 
         setPassengers(Integer.parseInt(search.getPassengers()));
 
-        addReturnLink.click();
-        setDate(search.getReturnFly());
+        setReturnDate(search.getReturnFly());
 
         btnSearch.click();
 
@@ -60,9 +60,9 @@ public class SearchPage extends PageObject {
         destination.typeAndEnter(destinationCity);
     }
 
-    public void setDate(String outboundDateKey){
+    public void setDate(String dateKey){
 
-        Date outboundDate = Daterize.fromString(outboundDateKey);
+        Date outboundDate = Daterize.fromString(dateKey);
 
         int day = Integer.parseInt(new SimpleDateFormat("dd").format(outboundDate));
         int lastDayElementChecked = Integer.parseInt(listOfAvailableDays.get(0).getText());
@@ -78,6 +78,16 @@ public class SearchPage extends PageObject {
             lastDayElementChecked = dayNumber;
         }
 
+    }
+
+    public void setReturnDate(String dateKey) {
+
+        if (dateKey.isBlank()){
+            return;
+        }
+
+        addReturnLink.click();
+        setDate(dateKey);
     }
 
     public void setPassengers(int numberOfPassengers) {

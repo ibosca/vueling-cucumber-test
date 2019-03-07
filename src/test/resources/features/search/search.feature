@@ -8,6 +8,6 @@ Feature: Main search
   Scenario: Initial search
     Given I'm main page
     When I try to find a fly
-      | Origin  | Destination | OutboundFly  | ReturnFly          | passengers |
-      | Almería | Alicante    | NEXT_WEEK    | TWO_WEEKS_FROM_NOW | 5          |
+      | Origin  | Destination | OutboundFly  | ReturnFly            | passengers |
+      | Almería | Alicante    | NEXT_WEEK    | THREE_WEEKS_FROM_NOW | 5          |
     Then I get available flight
